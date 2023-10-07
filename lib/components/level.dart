@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:journey_of_salvation/components/background_tile.dart';
 import 'package:journey_of_salvation/components/checkpoint.dart';
-import 'package:journey_of_salvation/components/chicken.dart';
+import 'package:journey_of_salvation/components/enemies/chicken.dart';
 import 'package:journey_of_salvation/components/collision_block.dart';
 import 'package:journey_of_salvation/components/fruit.dart';
 import 'package:journey_of_salvation/components/player.dart';
