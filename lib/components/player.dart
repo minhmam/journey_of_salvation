@@ -13,6 +13,9 @@ import 'package:journey_of_salvation/components/saw.dart';
 import 'package:journey_of_salvation/components/utils.dart';
 import 'package:journey_of_salvation/pixel_adventure.dart';
 
+import 'enemies/slime.dart';
+import 'enemies/turtle.dart';
+
 enum PlayerState {
   idle,
   running,
@@ -122,6 +125,8 @@ class Player extends SpriteAnimationGroupComponent
       if (other is Saw) _respawn();
       if (other is Chicken) other.collidedWithPlayer();
       if (other is Checkpoint) _reachedCheckpoint();
+      if (other is Slime) other.collidedWithPlayer();
+      if (other is Turtle) other.collidedWithPlayer();
     }
     super.onCollisionStart(intersectionPoints, other);
   }

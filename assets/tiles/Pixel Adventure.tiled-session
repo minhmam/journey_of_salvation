@@ -13,22 +13,23 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 2.159765625,
+            "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 519.963827093507,
-                "y": 181.7326822210165
+                "x": 292,
+                "y": 225.83333333333331
             }
         },
         "Level-03.tmx": {
             "expandedObjectLayers": [
+                3,
                 2
             ],
-            "scale": 1,
+            "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 3226,
-                "y": 333.5
+                "x": 388,
+                "y": 474.8333333333333
             }
         },
         "Pixel Adventure.tsx": {
@@ -42,7 +43,8 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "Level-01.tmx"
+        "Level-01.tmx",
+        "Level-03.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
     "recentFiles": [

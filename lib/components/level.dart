@@ -7,10 +7,13 @@ import 'package:journey_of_salvation/components/background_tile.dart';
 import 'package:journey_of_salvation/components/checkpoint.dart';
 import 'package:journey_of_salvation/components/enemies/chicken.dart';
 import 'package:journey_of_salvation/components/collision_block.dart';
+import 'package:journey_of_salvation/components/enemies/slime.dart';
 import 'package:journey_of_salvation/components/fruit.dart';
 import 'package:journey_of_salvation/components/player.dart';
 import 'package:journey_of_salvation/components/saw.dart';
 import 'package:journey_of_salvation/pixel_adventure.dart';
+
+import 'enemies/turtle.dart';
 
 class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
@@ -111,6 +114,24 @@ class Level extends World with HasGameRef<PixelAdventure> {
               offPos: offPos,
             );
             add(chicken);
+            break;
+          case 'Slime':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final slime = Slime(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(slime);
+            break;
+          case 'Turtle':
+            final turtle = Turtle(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(turtle);
             break;
           default:
         }
