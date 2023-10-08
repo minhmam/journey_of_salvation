@@ -14,6 +14,7 @@ import 'package:journey_of_salvation/pixel_adventure.dart';
 
 import 'enemies/bee.dart';
 import 'enemies/bullet.dart';
+import 'enemies/turtle.dart';
 
 class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
