@@ -1,3 +1,5 @@
+import 'package:flame/components.dart';
+
 bool checkCollision(player, block) {
   final hitbox = player.hitbox;
   final playerX = player.position.x + hitbox.offsetX;
@@ -20,3 +22,13 @@ bool checkCollision(player, block) {
       fixedX < blockX + blockWidth &&
       fixedX + playerWidth > blockX);
 }
+
+bool checkItemWallCollision(item, List<Block> blocks) {
+  for (final block in blocks) {
+    if (checkCollision(item, block)) {
+      return true; // Nếu có va chạm với ít nhất một khối tường, trả về true
+    }
+  }
+  return false; // Không có va chạm với bất kỳ khối tường nào, trả về false
+}
+
