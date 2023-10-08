@@ -77,6 +77,7 @@ flutter:
     - assets/images/Enemies/Chicken/
     - assets/images/Enemies/Slime/
     - assets/images/Enemies/Turtle/
+    - assets/images/Enemies/Bee/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
