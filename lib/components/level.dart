@@ -132,7 +132,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
               size: Vector2(spawnPoint.width, spawnPoint.height),
             );
             add(turtle);
-            break;
+            break;//test
           default:
         }
       }
