@@ -49,6 +49,9 @@
     "project": "Pixel Adventure.tiled-project",
     "recentFiles": [
         "Level-03.tmx",
+        "Pixel Adventure.tsx",
+        "Level-02.tmx",
+        "Level-04.tmx",
         "Level-01.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
