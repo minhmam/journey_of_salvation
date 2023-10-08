@@ -20,7 +20,7 @@ class PixelAdventure extends FlameGame
   late CameraComponent cam;
   Player player = Player(character: 'Mask Dude');
   late JoystickComponent joystick;
-  bool showControls = true;
+  bool showControls = false;
   bool playSounds = true;
   double soundVolume = 1.0;
   List<String> levelNames = ['Level-01', 'Level-01'];
@@ -106,12 +106,28 @@ class PixelAdventure extends FlameGame
         levelName: levelNames[currentLevelIndex],
       );
 
+
       cam = CameraComponent.withFixedResolution(
         world: world,
         width: 640,
         height: 360,
       );
+      // cam.viewport.size = Vector2(640, 360);
       cam.viewfinder.anchor = Anchor.topLeft;
+      // cam.viewport.position = Vector2(144, 480);
+      // cam.viewfinder.position = Vector2(144, 480);
+      // // cam.viewport.size = Vector2(640, 360);
+      // cam.viewport.position = Vector2(144, 480);
+      // cam.viewfinder.visibleGameSize = Vector2(640, 360);
+
+      // cam.viewfinder.anchor = Anchor.center;
+
+      // cam = CameraComponent(world: world)
+      //   // ..viewport.size = Vector2(30, 10)
+      //   ..viewport.position = Vector2(-144, -480);
+        // ..viewfinder.visibleGameSize = Vector2(640, 360)
+        // ..viewfinder.position = Vector2(144, 480);
+        // ..viewfinder.anchor = Anchor.topLeft;
 
       addAll([cam, world]);
     });

@@ -14,10 +14,21 @@
                 2
             ],
             "scale": 2.159765625,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 320.1736299511666,
-                "y": 181.96418882257188
+                "x": 519.963827093507,
+                "y": 181.7326822210165
+            }
+        },
+        "Level-03.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 3226,
+                "y": 333.5
             }
         },
         "Pixel Adventure.tsx": {
@@ -35,6 +46,7 @@
     ],
     "project": "Pixel Adventure.tiled-project",
     "recentFiles": [
+        "Level-03.tmx",
         "Level-01.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

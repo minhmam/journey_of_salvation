@@ -20,7 +20,8 @@ enum PlayerState {
   falling,
   hit,
   appearing,
-  disappearing
+  disappearing,
+  doubleJump
 }
 
 class Player extends SpriteAnimationGroupComponent
@@ -29,6 +30,7 @@ class Player extends SpriteAnimationGroupComponent
   Player({
     position,
     this.character = 'Ninja Frog',
+    anchor = Anchor.center
   }) : super(position: position);
 
   final double stepTime = 0.05;
@@ -37,6 +39,7 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation jumpingAnimation;
   late final SpriteAnimation fallingAnimation;
   late final SpriteAnimation hitAnimation;
+  late final SpriteAnimation doubleJumpAnimation;
   late final SpriteAnimation appearingAnimation;
   late final SpriteAnimation disappearingAnimation;
 
@@ -51,6 +54,7 @@ class Player extends SpriteAnimationGroupComponent
   bool hasJumped = false;
   bool gotHit = false;
   bool reachedCheckpoint = false;
+  int countJump = 0;
   List<CollisionBlock> collisionBlocks = [];
   CustomHitbox hitbox = CustomHitbox(
     offsetX: 10,
@@ -128,8 +132,10 @@ class Player extends SpriteAnimationGroupComponent
     jumpingAnimation = _spriteAnimation('Jump', 1);
     fallingAnimation = _spriteAnimation('Fall', 1);
     hitAnimation = _spriteAnimation('Hit', 7)..loop = false;
+    doubleJumpAnimation = _spriteAnimation('Double Jump', 6);
     appearingAnimation = _specialSpriteAnimation('Appearing', 7);
     disappearingAnimation = _specialSpriteAnimation('Desappearing', 7);
+
 
     // List of all animations
     animations = {
@@ -140,6 +146,7 @@ class Player extends SpriteAnimationGroupComponent
       PlayerState.hit: hitAnimation,
       PlayerState.appearing: appearingAnimation,
       PlayerState.disappearing: disappearingAnimation,
+      PlayerState.doubleJump: doubleJumpAnimation,
     };
 
     // Set current animation
@@ -185,14 +192,23 @@ class Player extends SpriteAnimationGroupComponent
     if (velocity.y > 0) playerState = PlayerState.falling;
 
     // Checks if jumping, set to jumping
-    if (velocity.y < 0) playerState = PlayerState.jumping;
+    // if (velocity.y < 0) playerState = PlayerState.jumping;
+    if (velocity.y < 0 && countJump == 1) {
+      playerState = PlayerState.jumping;
+    } else if (velocity.y < 0 && countJump == 2) {
+      playerState = PlayerState.doubleJump;
+    }
 
     current = playerState;
   }
 
   void _updatePlayerMovement(double dt) {
-    if (hasJumped && isOnGround) _playerJump(dt);
-
+    // if (hasJumped && isOnGround) _playerJump(dt);
+    if (hasJumped && countJump == 0) {
+      _playerJump(dt);
+    } else if (hasJumped && countJump == 1) {
+      _playerDoubleJump(dt);
+    }
     // if (velocity.y > _gravity) isOnGround = false; // optional
 
     velocity.x = horizontalMovement * moveSpeed;
@@ -205,6 +221,7 @@ class Player extends SpriteAnimationGroupComponent
     position.y += velocity.y * dt;
     isOnGround = false;
     hasJumped = false;
+    countJump = 1;
   }
 
   void _checkHorizontalCollisions() {
@@ -240,6 +257,7 @@ class Player extends SpriteAnimationGroupComponent
             velocity.y = 0;
             position.y = block.y - hitbox.height - hitbox.offsetY;
             isOnGround = true;
+            countJump = 0;
             break;
           }
         }
@@ -249,6 +267,7 @@ class Player extends SpriteAnimationGroupComponent
             velocity.y = 0;
             position.y = block.y - hitbox.height - hitbox.offsetY;
             isOnGround = true;
+            countJump = 0;
             break;
           }
           if (velocity.y < 0) {
@@ -307,5 +326,13 @@ class Player extends SpriteAnimationGroupComponent
 
   void collidedwithEnemy() {
     _respawn();
+  }
+
+  void _playerDoubleJump(double dt) {
+    velocity.y = -_jumpForce;
+    position.y += velocity.y * dt;
+    // isOnGround = false;
+    hasJumped = false;
+    countJump = 2;
   }
 }
