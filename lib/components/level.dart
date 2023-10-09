@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:journey_of_salvation/components/background_tile.dart';
 import 'package:journey_of_salvation/components/checkpoint.dart';
@@ -13,12 +12,13 @@ import 'package:journey_of_salvation/components/player.dart';
 import 'package:journey_of_salvation/components/saw.dart';
 import 'package:journey_of_salvation/pixel_adventure.dart';
 
+import 'enemies/bee.dart';
+import 'enemies/bullet.dart';
 import 'enemies/turtle.dart';
 
 class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
   final Player player;
-  late Rectangle _levelBounds;
 
 
   Level({required this.levelName, required this.player});
@@ -36,16 +36,6 @@ class Level extends World with HasGameRef<PixelAdventure> {
     _spawningObjects();
     _addCollisions();
 
-    _levelBounds = Rectangle.fromPoints(
-      Vector2(
-        0,
-        0,
-      ),
-      Vector2(
-        level.tileMap.map.width.toDouble(),
-        level.tileMap.map.height.toDouble(),
-      ) * 16,
-    );
 
     _setupCamera();
     return super.onLoad();
@@ -132,6 +122,12 @@ class Level extends World with HasGameRef<PixelAdventure> {
               size: Vector2(spawnPoint.width, spawnPoint.height),
             );
             add(turtle);
+          case 'Bee':
+            final bee = Bee(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(bee);//test
             break;
           default:
         }
