@@ -4,8 +4,9 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:journey_of_salvation/components/background_tile.dart';
 import 'package:journey_of_salvation/components/checkpoint.dart';
-import 'package:journey_of_salvation/components/enemies/chicken.dart';
 import 'package:journey_of_salvation/components/collision_block.dart';
+import 'package:journey_of_salvation/components/enemies/angrypig.dart';
+import 'package:journey_of_salvation/components/enemies/chicken.dart';
 import 'package:journey_of_salvation/components/enemies/slime.dart';
 import 'package:journey_of_salvation/components/fruit.dart';
 import 'package:journey_of_salvation/components/player.dart';
@@ -13,13 +14,14 @@ import 'package:journey_of_salvation/components/saw.dart';
 import 'package:journey_of_salvation/pixel_adventure.dart';
 
 import 'enemies/bee.dart';
-import 'enemies/bullet.dart';
+import 'enemies/bluebird.dart';
+import 'enemies/mushroom.dart';
+import 'enemies/snail.dart';
 import 'enemies/turtle.dart';
 
 class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
   final Player player;
-
 
   Level({required this.levelName, required this.player});
 
@@ -35,7 +37,6 @@ class Level extends World with HasGameRef<PixelAdventure> {
     _scrollingBackground();
     _spawningObjects();
     _addCollisions();
-
 
     _setupCamera();
     return super.onLoad();
@@ -127,7 +128,51 @@ class Level extends World with HasGameRef<PixelAdventure> {
               position: Vector2(spawnPoint.x, spawnPoint.y),
               size: Vector2(spawnPoint.width, spawnPoint.height),
             );
-            add(bee);//test
+            add(bee); //test
+            break;
+          case 'AngryPig':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final angryPig = AngryPig(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(angryPig);
+            break;
+          case 'BlueBird':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final blueBird = BlueBird(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(blueBird);
+            break;
+          case 'Mushroom':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final mushroom = Mushroom(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(mushroom);
+            break;
+          case 'Snail':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final snail = Snail(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(snail);
             break;
           default:
         }

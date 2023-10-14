@@ -78,6 +78,10 @@ flutter:
     - assets/images/Enemies/Slime/
     - assets/images/Enemies/Turtle/
     - assets/images/Enemies/Bee/
+    - assets/images/Enemies/AngryPig/
+    - assets/images/Enemies/BlueBird/
+    - assets/images/Enemies/Mushroom/
+    - assets/images/Enemies/Snail/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

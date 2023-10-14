@@ -5,9 +5,13 @@ import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/services.dart';
 import 'package:journey_of_salvation/components/checkpoint.dart';
+import 'package:journey_of_salvation/components/enemies/angrypig.dart';
+import 'package:journey_of_salvation/components/enemies/bluebird.dart';
 import 'package:journey_of_salvation/components/enemies/chicken.dart';
 import 'package:journey_of_salvation/components/collision_block.dart';
 import 'package:journey_of_salvation/components/custom_hitbox.dart';
+import 'package:journey_of_salvation/components/enemies/mushroom.dart';
+import 'package:journey_of_salvation/components/enemies/snail.dart';
 import 'package:journey_of_salvation/components/fruit.dart';
 import 'package:journey_of_salvation/components/saw.dart';
 import 'package:journey_of_salvation/components/utils.dart';
@@ -127,6 +131,10 @@ class Player extends SpriteAnimationGroupComponent
       if (other is Checkpoint) _reachedCheckpoint();
       if (other is Slime) other.collidedWithPlayer();
       if (other is Turtle) other.collidedWithPlayer();
+      if (other is AngryPig) other.collidedWithPlayer();
+      if (other is BlueBird) other.collidedWithPlayer();
+      if (other is Mushroom) other.collidedWithPlayer();
+      if (other is Snail) other.collidedWithPlayer();
     }
     super.onCollisionStart(intersectionPoints, other);
   }
