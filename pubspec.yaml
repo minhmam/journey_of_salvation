@@ -82,6 +82,8 @@ flutter:
     - assets/images/Enemies/BlueBird/
     - assets/images/Enemies/Mushroom/
     - assets/images/Enemies/Snail/
+    - assets/images/Menu/
+    - assets/images/Menu/Buttons/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
