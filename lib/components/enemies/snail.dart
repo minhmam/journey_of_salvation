@@ -46,7 +46,7 @@ class Snail extends SpriteAnimationGroupComponent
 
   @override
   FutureOr<void> onLoad() {
-    debugMode = true;
+    // debugMode = true;
     player = game.player;
 
     add(
@@ -167,5 +167,4 @@ class Snail extends SpriteAnimationGroupComponent
       player.collidedwithEnemy();
     }
   }
-
 }

@@ -23,7 +23,7 @@ class PixelAdventure extends FlameGame
   bool showControls = false;
   bool playSounds = true;
   double soundVolume = 1.0;
-  List<String> levelNames = ['Level-01', 'Level-01'];
+  List<String> levelNames = ['Level01-2', 'Level-01'];
   int currentLevelIndex = 0;
 
   @override
@@ -110,7 +110,7 @@ class PixelAdventure extends FlameGame
       cam = CameraComponent.withFixedResolution(
         world: world,
         width: 640,
-        height: 360,
+        height: 390,
       );
       // cam.viewport.size = Vector2(640, 360);
       cam.viewfinder.anchor = Anchor.topLeft;

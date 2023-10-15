@@ -1,6 +1,11 @@
 {
-    "activeFile": "",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Level-01.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
         "Level-01.tmx": {
@@ -9,17 +14,17 @@
                 2
             ],
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 353.99999999999994,
-                "y": 238.33333333333337
+                "x": 300.66666666666663,
+                "y": 246.99999999999997
             }
         },
         "Level-02.tmx": {
             "scale": 1.376015625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 320.4905467552376,
+                "x": 317.58360302049624,
                 "y": 184.22755918923525
             }
         },
@@ -31,8 +36,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1538.6666666666665,
-                "y": 492.33333333333337
+                "x": 1036,
+                "y": 486.99999999999994
             }
         },
         "Level-04.tmx": {
@@ -43,8 +48,32 @@
             "scale": 5.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 2673.818181818182,
-                "y": 327.72727272727275
+                "x": 1599.909090909091,
+                "y": 320
+            }
+        },
+        "Level01-1.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 295.99999999999994,
+                "y": 146.99999999999997
+            }
+        },
+        "Level01-2.tmx": {
+            "expandedObjectLayers": [
+                4,
+                2
+            ],
+            "scale": 1.554140625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 327.5121902176645,
+                "y": 192.06756145377773
             }
         },
         "Pixel Adventure.tsx": {
@@ -52,18 +81,24 @@
         }
     },
     "last.imagePath": "C:/Users/Spellthorn/Desktop/pixel_adventure/assets/images/Terrain",
-    "map.height": 23,
+    "map.height": 24,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
         "Level-01.tmx",
-        "Level-03.tmx"
+        "Level-03.tmx",
+        "Level-04.tmx",
+        "Level-02.tmx",
+        "Level01-1.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
     "property.type": "float",
     "recentFiles": [
+        "Level01-1.tmx",
+        "Level-02.tmx",
+        "Level-04.tmx",
         "Level-03.tmx",
         "Level-01.tmx"
     ],
