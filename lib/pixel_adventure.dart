@@ -32,6 +32,7 @@ class PixelAdventure extends FlameGame
     await images.loadAllImages();
 
     _loadLevel();
+    add(BackButton());
 
     if (showControls) {
       addJoystick();
