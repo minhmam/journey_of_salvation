@@ -15,6 +15,8 @@ class BackgroundTile extends ParallaxComponent {
 
   final double scrollSpeed = 40;
 
+  get gameRef => null;
+
   @override
   FutureOr<void> onLoad() async {
     priority = -10;
