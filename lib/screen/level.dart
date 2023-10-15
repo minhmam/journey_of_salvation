@@ -1,35 +1,38 @@
+import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+import '../components/utils.dart';
 
-
-
-
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-class LevelSelectionScreen extends StatelessWidget {
-
-
+class Level1Page extends Component {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Select Level'),
-      ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text('Level 1'),
-            onTap: () {
-              // Navigate to the game screen with selected level
-              // Navigator.push(
-              //   // context,
-              //   // MaterialPageRoute(builder: (context) => GameScreen(level: 1)),
-              // );
-            },
+  Future<void> onLoad() async {
+    final game = findGame()!;
+    addAll([
+      Background(const Color(0xbb2a074f)),
+      BackButton(),
+      Planet(
+        radius: 25,
+        color: const Color(0xfffff188),
+        position: game.size / 2,
+        children: [
+          Orbit(
+            radius: 110,
+            revolutionPeriod: 6,
+            planet: Planet(
+              radius: 10,
+              color: const Color(0xff54d7b1),
+              children: [
+                Orbit(
+                  radius: 25,
+                  revolutionPeriod: 5,
+                  planet: Planet(radius: 3, color: const Color(0xFFcccccc)),
+                ),
+              ],
+            ),
           ),
-          // Add more levels here...
         ],
       ),
-    );
+    ]);
   }
 }
