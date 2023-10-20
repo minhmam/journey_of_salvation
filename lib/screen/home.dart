@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:journey_of_salvation/screen/route.dart';
 
 import '../components/utils.dart';
-class HomePage extends Component with HasGameReference<RouterGame> {
+class HomePage extends Component with HasGameRef<RouterGame>{
   HomePage() {
     addAll([
       _logo = TextComponent(
