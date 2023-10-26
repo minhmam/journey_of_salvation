@@ -8,6 +8,7 @@ import 'package:flutter/painting.dart';
 import 'package:journey_of_salvation/components/jump_button.dart';
 import 'package:journey_of_salvation/components/level.dart';
 import 'package:journey_of_salvation/components/player.dart';
+import 'package:journey_of_salvation/components/utils.dart';
 
 class PixelAdventure extends FlameGame
     with
@@ -32,12 +33,15 @@ class PixelAdventure extends FlameGame
     await images.loadAllImages();
 
     _loadLevel();
-    // add(BackButton());
-
+    addJoystick();
     if (showControls) {
-      addJoystick();
-      add(JumpButton());
+
     }
+
+    addAll([
+
+      JumpButton(),
+    ]);
 
     return super.onLoad();
   }
