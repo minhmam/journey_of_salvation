@@ -1,86 +1,89 @@
-import 'package:flame/components.dart';
-import 'package:flame/events.dart';
-import 'package:flame/experimental.dart';
-import 'package:flame/game.dart';
-import 'package:flame/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:journey_of_salvation/screen/route.dart';
-import 'package:flutter/painting.dart'; // Import Offset from the Flutter package
+import 'package:flame/widgets.dart';
 
-class MainMenu extends StatelessWidget {
-  const MainMenu({Key? key}) : super(key: key);
-  // SpriteComponent girl = SpriteComponent();
-  // SpriteComponent boy = SpriteComponent();
-  // SpriteComponent background = SpriteComponent();
-  // late ButtonSetting settingBtn;
-  // ButtonSetting buttonSetting = ButtonSetting();
+class MainMenuWidget extends StatefulWidget {
+  const MainMenuWidget({Key? key}) : super(key: key);
 
-  // @override
-  // Future<void> onLoad() async {
-  //
-  //   // settingBtn= ButtonSetting(
-  //   //   action: () => game.router.pushNamed('level2'),
-  //   // )
-  //   //   ..sprite = await loadSprite("Menu/Buttons/Settings.png")
-  //   //   ..size = Vector2(34, 34)
-  //   //   ..position = Vector2(24, size.y - 54);
-  //   // buttonSetting
-  //   //   ..sprite = await loadSprite("Menu/Buttons/Play.png")
-  //   //   ..size = Vector2(64, 64)
-  //   //   ..position = Vector2(size.x / 2 - 64 / 2, size.y / 2 - 64 / 2);
-  //   background
-  //     ..sprite = await loadSprite('Menu/background.jpg')
-  //     ..size = Vector2(size.x, size.y);
-  //   addAll([
-  //     background,
-  //     settingBtn,
-  //   ]);
-  // }
+  @override
+  MainMenu createState() => MainMenu();
+}
+
+class MainMenu extends State<MainMenuWidget> {
+  bool volume = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Screen'),
-      ),
       body: Center(
-        child: SpriteButton.asset(
-          path: "Menu/Buttons/Settings.png",
-          onPressed: () =>{
-            Navigator.pushNamed(context, '/level2'),
-            print('Pressed')
-          }
-          ,
-          width: 34,
-          height: 34,
-          label: const Text(""),
-          pressedPath: "Menu/Buttons/Settings.png",
-
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              left: MediaQuery.of(context).size.width * 0.6 - MediaQuery.of(context).size.width * 0.15,
+              top: MediaQuery.of(context).size.height * 0.6 - MediaQuery.of(context).size.width * 0.1,
+              bottom: MediaQuery.of(context).size.height * 0.6 - MediaQuery.of(context).size.width * 0.1,
+              right: MediaQuery.of(context).size.width * 0.6 - MediaQuery.of(context).size.width * 0.15,
+              child: PlayButton(),
+            ),
+            Positioned(
+              left: MediaQuery.of(context).size.width * 0.08 - MediaQuery.of(context).size.width * 0.05,
+              bottom: MediaQuery.of(context).size.height * 0.16 - MediaQuery.of(context).size.width * 0.05,
+              child: VolumeButton(
+                onVolumeChanged: (bool newVolume) {
+                  setState(() {
+                    volume = newVolume;
+                  });
+                },
+                volume: volume,
+              ),
+            ),
+          ],
         ),
-          // SpriteButton.asset(path: "Menu/Buttons/Settings.png", pressedPath: "Menu/Buttons/Settings.png", onPressed: ()=>{
-          //   Navigator.pushNamed(context, '/second'),
-          //   print('Pressed')
-          // }, width: 34, height: 34, label: const Text("")),
-
       ),
     );
   }
 }
 
-
-class ButtonSetting extends SpriteComponent with TapCallbacks{
-  ButtonSetting({
-    required this.action,
-}) : super(priority: 2);
-  final void Function() action;
-
-
+class PlayButton extends StatefulWidget {
   @override
-  void onTapUp(TapUpEvent event) {
-    print("mute");
-    // gameRef.router.pushNamed('level2');
-    scale = Vector2.all(1.0);
-    action();
+  _PlayButtonState createState() => _PlayButtonState();
+}
+
+class _PlayButtonState extends State<PlayButton> {
+  @override
+  Widget build(BuildContext context) {
+    return SpriteButton.asset(
+      path: "Menu/Buttons/Play.png",
+      onPressed: () {
+        Navigator.pushNamed(context, '/level2');
+      },
+      width: MediaQuery.of(context).size.width * 0.2,
+      height: MediaQuery.of(context).size.height * 0.2,
+      label: const Text(""),
+      pressedPath: "Menu/Buttons/Play.png",
+    );
   }
 }
 
+class VolumeButton extends StatelessWidget {
+  final bool volume;
+  final Function(bool) onVolumeChanged;
+
+  VolumeButton({
+    required this.volume,
+    required this.onVolumeChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SpriteButton.asset(
+      path: volume ? "Menu/Buttons/Audio1.png" : "Menu/Buttons/Audio2.png",
+      onPressed: () {
+        onVolumeChanged(!volume);
+      },
+      width: MediaQuery.of(context).size.width * 0.05,
+      height: MediaQuery.of(context).size.height * 0.1,
+      label: const Text(""),
+      pressedPath: "Menu/Buttons/Audio1.png",
+    );
+  }
+}

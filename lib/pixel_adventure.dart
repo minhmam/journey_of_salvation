@@ -21,7 +21,7 @@ class PixelAdventure extends FlameGame
   late CameraComponent cam;
   Player player = Player(character: 'Mask Dude');
   late JoystickComponent joystick;
-  bool showControls = false;
+  bool showControls = true;
   bool playSounds = true;
   double soundVolume = 1.0;
   List<String> levelNames = ['Level01-2', 'Level-01'];
@@ -33,13 +33,11 @@ class PixelAdventure extends FlameGame
     await images.loadAllImages();
 
     _loadLevel();
-    addJoystick();
     if (showControls) {
-
+      addJoystick();
     }
 
     addAll([
-
       JumpButton(),
     ]);
 
@@ -66,10 +64,10 @@ class PixelAdventure extends FlameGame
         sprite: Sprite(
           images.fromCache('HUD/Joystick.png'),
         ),
+        size: Vector2(128, 128),
       ),
-      margin: const EdgeInsets.only(left: 32, bottom: 32),
+      margin: const EdgeInsets.only(left: 52, bottom: 52),
     );
-
     add(joystick);
   }
 

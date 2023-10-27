@@ -19,8 +19,8 @@ void main() async {
       title: 'Named Routes Demo',
       initialRoute: '/',
       routes: {
-        '/': (context) => const MainMenu(),
-        '/second': (context) => const SecondScreen(),
+        '/': (context) => const MainMenuWidget(),
+        '/settingScreen': (context) => const SecondScreen(),
         '/level2': (context) => GameWidget(game: PixelAdventure()),
         '/playScreen': (context) => const PlayScreen(),
       },
