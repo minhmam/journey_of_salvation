@@ -26,9 +26,9 @@ class PlayScreen extends StatelessWidget {
                   SizedBox(
                     height: SizeConfig.blockSizeHorizontal! * 8 * 1.0 * 20,
                     width: SizeConfig.blockSizeHorizontal! * 8 * 1.0 * 10,
-                    child: GameWidget(
-                      game: PixelAdventure(),
-                    ),
+                    // child: GameWidget(
+                    //   game: PixelAdventure(),
+                    // ),
                   ),
                 ]),
               ],
