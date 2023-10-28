@@ -1,47 +1,54 @@
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
+import 'package:flame/events.dart';
+import 'package:flame/game.dart';
+import 'package:flame/widgets.dart';
 import 'package:journey_of_salvation/screen/route.dart';
+import 'package:flutter/painting.dart'; // Import Offset from the Flutter package
 
-import '../components/utils.dart';
-class HomePage extends Component with HasGameRef<RouterGame>{
-  HomePage() {
-    addAll([
-      _logo = TextComponent(
-        text: 'Syzygy',
-        textRenderer: TextPaint(
-          style: const TextStyle(
-            fontSize: 64,
-            color: Color(0xFFC8FFF5),
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-        anchor: Anchor.center,
-      ),
-      _button1 = RoundedButton(
-        text: 'Level 1',
-        action: () => game.router.pushNamed('level1'),
-        color: const Color(0xffadde6c),
-        borderColor: const Color(0xffedffab),
-      ),
-      _button2 = RoundedButton(
-        text: 'Level 2',
-        action: () => game.router.pushNamed('level2'),
-        color: const Color(0xffdebe6c),
-        borderColor: const Color(0xfffff4c7),
-      ),
-    ]);
-  }
-
-  late final TextComponent _logo;
-  late final RoundedButton _button1;
-  late final RoundedButton _button2;
+class HomePage extends FlameGame with HasTappables, HasGameRef<RouterGame> {
+  SpriteComponent girl = SpriteComponent();
+  SpriteComponent boy = SpriteComponent();
+  SpriteComponent background = SpriteComponent();
+  late ButtonSetting settingBtn;
+  // ButtonSetting buttonSetting = ButtonSetting();
 
   @override
-  void onGameResize(Vector2 size) {
-    super.onGameResize(size);
-    _logo.position = Vector2(size.x / 2, size.y / 3);
-    _button1.position = Vector2(size.x / 2, _logo.y + 80);
-    _button2.position = Vector2(size.x / 2, _logo.y + 140);
+  Future<void> onLoad() async {
+    await super.onLoad();
+    settingBtn= ButtonSetting()
+      ..sprite = await loadSprite("Menu/Buttons/Play.png")
+      ..size = Vector2(64, 64)
+      ..position = Vector2(size.x / 2 - 64 / 2, size.y / 2 - 64 / 2);
+
+
+    background
+      ..sprite = await loadSprite('Menu/background.jpg')
+      ..size = Vector2(size.x, size.y);
+
+    // button settings
+
+
+    // buttonSetting
+    //   ..sprite = await loadSprite("Menu/Buttons/Play.png")
+    //   ..size = Vector2(64, 64)
+    //   ..position = Vector2(size.x / 2 - 64 / 2, size.y / 2 - 64 / 2);
+
+    addAll([
+      background,
+      settingBtn,
+    ]);
+  }
+  void navigateToSetting() {
+    gameRef.router.pushNamed('setting');
+  }
+}
+
+
+class ButtonSetting extends SpriteComponent with Tappable, HasGameRef<RouterGame> {
+  @override
+  bool onTapup(TapDownInfo event) {
+    print("mute");
+    return true;
   }
 }
 

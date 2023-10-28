@@ -8,6 +8,7 @@ import 'package:flutter/painting.dart';
 import 'package:journey_of_salvation/components/jump_button.dart';
 import 'package:journey_of_salvation/components/level.dart';
 import 'package:journey_of_salvation/components/player.dart';
+import 'package:journey_of_salvation/components/utils.dart';
 
 class PixelAdventure extends FlameGame
     with
@@ -20,7 +21,7 @@ class PixelAdventure extends FlameGame
   late CameraComponent cam;
   Player player = Player(character: 'Mask Dude');
   late JoystickComponent joystick;
-  bool showControls = false;
+  bool showControls = true;
   bool playSounds = true;
   double soundVolume = 1.0;
   List<String> levelNames = ['Level01-2', 'Level-01'];
@@ -32,12 +33,13 @@ class PixelAdventure extends FlameGame
     await images.loadAllImages();
 
     _loadLevel();
-    // add(BackButton());
-
     if (showControls) {
       addJoystick();
-      add(JumpButton());
     }
+
+    addAll([
+      JumpButton(),
+    ]);
 
     return super.onLoad();
   }
@@ -62,10 +64,10 @@ class PixelAdventure extends FlameGame
         sprite: Sprite(
           images.fromCache('HUD/Joystick.png'),
         ),
+        size: Vector2(128, 128),
       ),
-      margin: const EdgeInsets.only(left: 32, bottom: 32),
+      margin: const EdgeInsets.only(left: 52, bottom: 52),
     );
-
     add(joystick);
   }
 
