@@ -1,4 +1,4 @@
-import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/widgets.dart';
 
@@ -9,6 +9,7 @@ class MainMenuWidget extends StatefulWidget {
 }
 
 class MainMenu extends State<MainMenuWidget> {
+  AudioPlayer audioPlayer = AudioPlayer();
   bool volume = true;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class MainMenu extends State<MainMenuWidget> {
               top: MediaQuery.of(context).size.height * 0.6 - MediaQuery.of(context).size.width * 0.1,
               bottom: MediaQuery.of(context).size.height * 0.6 - MediaQuery.of(context).size.width * 0.1,
               right: MediaQuery.of(context).size.width * 0.6 - MediaQuery.of(context).size.width * 0.15,
-              child: const PlayButton(),
+              child: PlayButton(
+                volume: volume,
+              )
             ),
             //button volume
             Positioned(
@@ -46,27 +49,40 @@ class MainMenu extends State<MainMenuWidget> {
             Positioned(
               left: MediaQuery.of(context).size.width * 0.16 - MediaQuery.of(context).size.width * 0.05,
               bottom: MediaQuery.of(context).size.height * 0.16 - MediaQuery.of(context).size.width * 0.05,
-              child: const StoreButton(),
+              child: StoreButton(
+                volume: volume,
+              )
             ),
           ],
         ),
       ),
     );
   }
-}
-class PlayButton extends StatefulWidget {
-  const PlayButton({super.key});
-
   @override
-  _PlayButtonState createState() => _PlayButtonState();
-}
+  void initState() {
+    super.initState();
+    playBackgroundMusic();
+  }
 
-class _PlayButtonState extends State<PlayButton> {
+  void playBackgroundMusic() async {
+    await FlameAudio.audioCache.load("Backgrourd_music.wav");
+    if (volume) FlameAudio.bgm.play('Backgrourd_music.wav', volume: 1.0 );
+
+  }
+
+
+}
+class PlayButton extends StatelessWidget {
+  final bool volume;
+  const PlayButton({super.key,
+    required this.volume,});
+
   @override
   Widget build(BuildContext context) {
     return SpriteButton.asset(
       path: "Menu/Buttons/Play.png",
       onPressed: () {
+        if(volume)FlameAudio.play('click.wav');
         Navigator.pushNamed(context, '/level2');
       },
       width: MediaQuery.of(context).size.width * 0.2,
@@ -77,17 +93,19 @@ class _PlayButtonState extends State<PlayButton> {
   }
 }
 
-class StoreButton extends StatefulWidget {
-  const StoreButton({super.key});
+
+
+class StoreButton extends StatelessWidget{
+  final bool volume;
+  const StoreButton({super.key,
+    required this.volume,});
+
   @override
-  StoreButtonState createState() => StoreButtonState();
-}
-class StoreButtonState extends State<StoreButton> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return SpriteButton.asset(
       path: "Menu/Buttons/Icon_Cart.png",
       onPressed: () {
+        if(volume)FlameAudio.play('click.wav');
         Navigator.pushNamed(context, '/');
       },
       width: MediaQuery.of(context).size.width * 0.05,
@@ -112,8 +130,14 @@ class VolumeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SpriteButton.asset(
       path: volume ? "Menu/Buttons/SoundOn.png" : "Menu/Buttons/SoundOff.png",
-      onPressed: () {
+      onPressed: () async {
+        if(volume)FlameAudio.play('click.wav');
         onVolumeChanged(!volume);
+        if (volume) {
+          FlameAudio.bgm.pause();
+        } else {
+          FlameAudio.bgm.resume();
+        }
       },
       width: MediaQuery.of(context).size.width * 0.05,
       height: MediaQuery.of(context).size.height * 0.1,
