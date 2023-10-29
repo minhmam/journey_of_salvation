@@ -14,10 +14,14 @@ class MainMenu extends State<MainMenuWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-
         child: Stack(
           children: <Widget>[
-            //
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(image: AssetImage("assets/images/Menu/background_game.gif"), fit: BoxFit.fill),
+              ),
+            ),
+            //button play
             Positioned(
               left: MediaQuery.of(context).size.width * 0.6 - MediaQuery.of(context).size.width * 0.15,
               top: MediaQuery.of(context).size.height * 0.6 - MediaQuery.of(context).size.width * 0.1,
@@ -25,7 +29,7 @@ class MainMenu extends State<MainMenuWidget> {
               right: MediaQuery.of(context).size.width * 0.6 - MediaQuery.of(context).size.width * 0.15,
               child: const PlayButton(),
             ),
-
+            //button volume
             Positioned(
               left: MediaQuery.of(context).size.width * 0.08 - MediaQuery.of(context).size.width * 0.05,
               bottom: MediaQuery.of(context).size.height * 0.16 - MediaQuery.of(context).size.width * 0.05,
@@ -39,21 +43,11 @@ class MainMenu extends State<MainMenuWidget> {
               ),
             ),
             //button cart
-            // Positioned(
-            //   // bên trái ở giữa
-            //   left: MediaQuery.of(context).size.width * 0.08 - MediaQuery.of(context).size.width * 0.05,
-            //   bottom: MediaQuery.of(context).size.height * 0.5 - MediaQuery.of(context).size.width * 0.05,
-            //   child: SpriteButton.asset(
-            //     path: "Menu/Buttons/Icon_Cart.png",
-            //     onPressed: () {
-            //       Navigator.pushNamed(context, '/');
-            //     },
-            //     width: MediaQuery.of(context).size.width * 0.2,
-            //     height: MediaQuery.of(context).size.height * 0.2,
-            //     label:  const Text(''),
-            //     pressedPath: "Menu/Buttons/Icon_Cart.png",
-            //   ),
-            // ),
+            Positioned(
+              left: MediaQuery.of(context).size.width * 0.16 - MediaQuery.of(context).size.width * 0.05,
+              bottom: MediaQuery.of(context).size.height * 0.16 - MediaQuery.of(context).size.width * 0.05,
+              child: const StoreButton(),
+            ),
           ],
         ),
       ),
@@ -85,23 +79,21 @@ class _PlayButtonState extends State<PlayButton> {
 
 class StoreButton extends StatefulWidget {
   const StoreButton({super.key});
-
   @override
   StoreButtonState createState() => StoreButtonState();
 }
-
 class StoreButtonState extends State<StoreButton> {
   @override
   Widget build(BuildContext context) {
     return SpriteButton.asset(
-      path: "Menu/Buttons/.png",
+      path: "Menu/Buttons/Icon_Cart.png",
       onPressed: () {
         Navigator.pushNamed(context, '/');
       },
-      width: MediaQuery.of(context).size.width * 0.2,
-      height: MediaQuery.of(context).size.height * 0.2,
-      label:  const Text('' ),
-      pressedPath: "Menu/Buttons/.png",
+      width: MediaQuery.of(context).size.width * 0.05,
+      height: MediaQuery.of(context).size.height * 0.1,
+      label:  const Text(''),
+      pressedPath: "Menu/Buttons/Icon_Cart.png",
     );
   }
 }
