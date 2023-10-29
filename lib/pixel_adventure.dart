@@ -8,7 +8,6 @@ import 'package:flutter/painting.dart';
 import 'package:journey_of_salvation/components/jump_button.dart';
 import 'package:journey_of_salvation/components/level.dart';
 import 'package:journey_of_salvation/components/player.dart';
-import 'package:journey_of_salvation/components/utils.dart';
 
 class PixelAdventure extends FlameGame
     with

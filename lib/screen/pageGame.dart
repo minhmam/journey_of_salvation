@@ -1,11 +1,5 @@
-import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-import '../components/utils.dart';
-import '../pixel_adventure.dart';
 
 
 class PlayScreen extends StatelessWidget {
