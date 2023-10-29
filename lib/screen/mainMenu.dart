@@ -106,7 +106,7 @@ class StoreButton extends StatelessWidget{
       path: "Menu/Buttons/Icon_Cart.png",
       onPressed: () {
         if(volume)FlameAudio.play('click.wav');
-        Navigator.pushNamed(context, '/');
+        Navigator.pushNamed(context, '/choose_character');
       },
       width: MediaQuery.of(context).size.width * 0.05,
       height: MediaQuery.of(context).size.height * 0.1,
