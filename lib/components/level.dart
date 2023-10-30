@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:journey_of_salvation/components/background_tile.dart';
 import 'package:journey_of_salvation/components/checkpoint.dart';
@@ -13,6 +14,7 @@ import 'package:journey_of_salvation/components/player.dart';
 import 'package:journey_of_salvation/components/saw.dart';
 import 'package:journey_of_salvation/pixel_adventure.dart';
 
+import 'constants/globals.dart';
 import 'enemies/bee.dart';
 import 'enemies/bluebird.dart';
 import 'enemies/mushroom.dart';
@@ -22,6 +24,7 @@ import 'enemies/turtle.dart';
 class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
   final Player player;
+  late Rectangle _levelBounds;
 
   Level({required this.levelName, required this.player});
 
@@ -33,6 +36,18 @@ class Level extends World with HasGameRef<PixelAdventure> {
     level = await TiledComponent.load('$levelName.tmx', Vector2.all(16));
     // debugMode = true;
     add(level);
+
+    _levelBounds = Rectangle.fromPoints(
+      Vector2(
+        0,
+        0,
+      ),
+      Vector2(
+        level.tileMap.map.width.toDouble(),
+        level.tileMap.map.height.toDouble(),
+      ) *
+          Globals.tileSize,
+    );
 
     _scrollingBackground();
     _spawningObjects();
@@ -209,12 +224,12 @@ class Level extends World with HasGameRef<PixelAdventure> {
   }
 
   void _setupCamera() {
-    // gameRef.cam.follow(player, maxSpeed: 1000);
-    // gameRef.cam.setBounds(
-    //   Rectangle.fromPoints(
-    //     _levelBounds.topLeft,
-    //     _levelBounds.topRight,
-    //   ),
-    // );
+    gameRef.cam.follow(player, maxSpeed: 1000);
+    gameRef.cam.setBounds(
+      Rectangle.fromPoints(
+        _levelBounds.topLeft,
+        _levelBounds.topRight,
+      ),
+    );
   }
 }
