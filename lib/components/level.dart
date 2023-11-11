@@ -34,7 +34,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
   @override
   FutureOr<void> onLoad() async {
     level = await TiledComponent.load('$levelName.tmx', Vector2.all(16));
-    // debugMode = true;
+    debugMode = true;
     add(level);
 
     _levelBounds = Rectangle.fromPoints(
@@ -53,7 +53,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
     _spawningObjects();
     _addCollisions();
 
-    _setupCamera();
+    // _setupCamera();
     return super.onLoad();
   }
 
