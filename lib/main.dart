@@ -18,7 +18,7 @@ void main() async {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(
-          seconds: 3,
+          seconds: 1,
           navigateAfterSeconds: MainMenuWidget(),
           title: Text(
             'Journey of Salvation',

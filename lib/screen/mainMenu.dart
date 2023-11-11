@@ -1,6 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/widgets.dart';
+import 'package:journey_of_salvation/components/model/level.dart';
+
+import '../components/database/level_db.dart';
 
 class MainMenuWidget extends StatefulWidget {
   const MainMenuWidget({Key? key}) : super(key: key);
@@ -113,12 +116,23 @@ class VolumeButton extends StatelessWidget {
     return SpriteButton.asset(
       path: volume ? "Menu/Buttons/SoundOn.png" : "Menu/Buttons/SoundOff.png",
       onPressed: () {
-        onVolumeChanged(!volume);
+        // onVolumeChanged(!volume);
+        insertTest();
       },
       width: MediaQuery.of(context).size.width * 0.05,
       height: MediaQuery.of(context).size.height * 0.1,
       label:  const Text(''),
       pressedPath: "Menu/Buttons/SoundOn.png",
     );
+  }
+
+  void insertTest() {
+    Level level = Level(1, 'Level-01');
+
+    //insert level
+    LevelDB().insert(level.toMap());
+
+    //fetch all
+    LevelDB().fetchAll().then((value) => print(value));
   }
 }
