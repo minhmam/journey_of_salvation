@@ -1,11 +1,5 @@
 import 'dart:ui';
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
-import 'package:flame/events.dart';
-import 'package:flame/experimental.dart';
-import 'package:flame/game.dart';
-import 'package:flame/geometry.dart';
-import 'package:flame/rendering.dart';
 import 'package:flutter/rendering.dart';
 
 bool checkCollision(player, block) {

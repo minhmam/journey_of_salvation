@@ -120,6 +120,7 @@ class Slime extends SpriteAnimationGroupComponent
   }
 
   void collidedWithPlayer() async {
+    //Check rơi xuống + potision.y
     if (player.velocity.y > 0 && player.y + player.height > position.y) {
       if (game.playSounds) {
         FlameAudio.play('bounce.wav', volume: game.soundVolume);

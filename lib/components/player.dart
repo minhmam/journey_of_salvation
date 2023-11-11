@@ -75,7 +75,7 @@ class Player extends SpriteAnimationGroupComponent
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    debugMode = true;
+    // debugMode = true;
 
     startingPosition = Vector2(position.x, position.y);
 
@@ -94,9 +94,9 @@ class Player extends SpriteAnimationGroupComponent
       if (!gotHit && !reachedCheckpoint) {
         _updatePlayerState();
         _updatePlayerMovement(fixedDeltaTime);
-        _checkHorizontalCollisions();
+        _checkHorizontalCollisions(); //Ngang
         _applyGravity(fixedDeltaTime);
-        _checkVerticalCollisions();
+        _checkVerticalCollisions(); //Doc
       }
 
       accumulatedTime -= fixedDeltaTime;
