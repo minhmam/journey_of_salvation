@@ -34,7 +34,7 @@ void main() async {
         ),
         '/settingScreen': (context) => const SecondScreen(),
         '/level2': (context) => GameWidget(game: PixelAdventure()),
-        '/playScreen': (context) => const PlayScreen(),
+        '/choose_character': (context) => const ChooseCharacter(),
       },
     ));
   });
